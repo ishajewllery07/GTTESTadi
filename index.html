@@ -918,9 +918,18 @@
         `).join('');
     }
 
-    window.onload = function() {
-      if (sessionStorage.getItem('gtest_admin_unlocked') === '1') unlockAdminPanel();
+        window.onload = function() {
+      if (sessionStorage.getItem('gtest_admin_unlocked') === '1') {
+        unlockAdminPanel();
+      }
+      // Har 10 second me background me Reset Requests aur Student Data auto-refresh hoga
+      setInterval(function() {
+        if (sessionStorage.getItem('gtest_admin_unlocked') === '1') {
+          syncAllAdminData();
+        }
+      }, 10000);
     };
+
   </script>
 </body>
 </html>
